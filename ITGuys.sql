@@ -38,14 +38,6 @@ CREATE TABLE IF NOT EXISTS event_topic
 	PRIMARY KEY (topic_id)
 );
 
-CREATE TABLE IF NOT EXISTS city
-(
-	city_id INT AUTO_INCREMENT,
-	city VARCHAR(255),
-	state VARCHAR(8),
-	PRIMARY KEY (city_id)
-);
-
 CREATE TABLE IF NOT EXISTS event_main
 (
 	event_id INT NOT NULL AUTO_INCREMENT,
@@ -61,13 +53,14 @@ CREATE TABLE IF NOT EXISTS event_main
 	event_status BOOL,
 	event_loc_lat FLOAT,
 	event_loc_lng FLOAT,
-	event_loc_address VARCHAR(255),
-	event_loc_city INT,
+	event_address_line1 VARCHAR(255),
+	event_address_line2 VARCHAR(255),
+	event_address_line3 VARCHAR(255),
 	event_loc_desc TEXT,
 	PRIMARY KEY (event_id),
 	FOREIGN KEY (submitted_by) REFERENCES users(user_id),
-	FOREIGN KEY (organization) REFERENCES organization(org_id),
-	FOREIGN KEY (event_loc_city) REFERENCES city(city_id)
+	FOREIGN KEY (organization) REFERENCES organization(org_id)
+	
 );
 
 CREATE TABLE IF NOT EXISTS type_lookup
@@ -84,16 +77,3 @@ CREATE TABLE IF NOT EXISTS topic_lookup
 	PRIMARY KEY (event_id, topic_id)
 );
 
-CREATE TABLE IF NOT EXISTS zip
-(
-	zip_id INT NOT NULL AUTO_INCREMENT,
-	zip_code INT,
-	PRIMARY KEY (zip_id)
-);
-
-CREATE TABLE IF NOT EXISTS zip_lookup
-(
-	zip_id INT NOT NULL default '0',
-	city_id INT NOT NULL default '0',
-	PRIMARY KEY (zip_id, city_id)
-);
