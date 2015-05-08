@@ -1,16 +1,21 @@
+--IT GUYS
+--Baldwin Browne
+--Haimanot Belay
+--Joaquin Bautista 
+
 DROP DATABASE IF EXISTS CascadiaDB;
 CREATE DATABASE IF NOT EXISTS CascadiaDB;
 
 USE CascadiaDB;
 
 CREATE TABLE IF NOT EXISTS organization
-
 (
 	org_id INT NOT NULL AUTO_INCREMENT,
 	org_name VARCHAR(255),
 	email VARCHAR(255),
 	PRIMARY KEY (org_id)
 );
+
 
 CREATE TABLE IF NOT EXISTS users
 (
@@ -20,7 +25,9 @@ CREATE TABLE IF NOT EXISTS users
 	email VARCHAR(255),
 	password VARCHAR(255),
 	user_name VARCHAR(255),
+	registered_user BOOL;
 	admin BOOL,
+	super_admin BOOL,
 	PRIMARY KEY (user_id)
 );
 
@@ -57,10 +64,10 @@ CREATE TABLE IF NOT EXISTS event_main
 	event_address_line2 VARCHAR(255),
 	event_address_line3 VARCHAR(255),
 	event_loc_desc TEXT,
+	version INT, -- to log previous versions
 	PRIMARY KEY (event_id),
 	FOREIGN KEY (submitted_by) REFERENCES users(user_id),
 	FOREIGN KEY (organization) REFERENCES organization(org_id)
-	
 );
 
 CREATE TABLE IF NOT EXISTS type_lookup
