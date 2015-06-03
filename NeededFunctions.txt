@@ -1,0 +1,72 @@
+Informal Function Document for Cascadia Web App
+
+Needed Pages:
+
+Display
+This is the most important page. Without this page functioning properly we will
+get a zero.
+
+This page consists of a Google Map with map markers for each event and a
+calender that displays an agenda view. It is also imperitive that the page
+be filterable by event type and topic.
+
+The idea behind the workings of the page: The display page will recieve a JSON
+objects from the server. Each JSON object represents an event. After the first
+X number events are poulated we could possibly recieve more event objects via
+AJAX.
+
+
+Add Event
+This is a page where the user can go to add an event. At this point the user
+must be identified so the event can be associated with a user. This page will
+contain fields for information about the event including: 
+event Title, 
+event Description, 
+beginning datetime, 
+end datetime,
+event cost,
+associated organizations,
+address
+
+See the ITGuys.sql for specifics on the database. The data should be collected
+and formatted in such a way to allow for the creation of SQL insert statements
+into the database.
+
+
+Edit Event
+This page will be very much like the add event page but information about the
+event will preload into the forms. The user must have permision to edit an
+event and may only edit their own events.
+
+Event Processor
+This page will take information submitted about an evnt, convert it into SQL
+and then run the query. This page should return a Succeed or Fail to the user.
+
+
+Admin Page
+This page will show all events. This page should be filterable by published and
+unpublished events. It should allow the admin to publish, edit, and delete
+events.
+
+
+Needed functions
+
+SQL Insert Generator
+This function should take information from the forms and generate sql statements
+that can be create new events in the database.
+
+
+Get GeoLoc
+Takes the address of an event and creates a geoloction tag that can be used on
+Google Map
+
+
+Event Object Creator
+Creates an object that represents a single event. Will probably be generated
+from a response table mysqli object. The information in the object should
+include data that will make events filterable.
+
+
+Display Event Object
+This will use information from event objects to create displays in the agenda
+view and the calendar view.
