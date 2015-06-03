@@ -70,3 +70,7 @@ include data that will make events filterable.
 Display Event Object
 This will use information from event objects to create displays in the agenda
 view and the calendar view.
+
+
+Create New User
+Add users credentials to the .htpassword and add to the user table of the database
