@@ -38,11 +38,15 @@ This page will be very much like the add event page but information about the
 event will preload into the forms. The user must have permision to edit an
 event and may only edit their own events.
 
+
 Event Processor
 This page will take information submitted about an evnt, convert it into SQL
 and then run the query. This page should return a Succeed or Fail to the user.
 
 
+User "Homepage"
+This page would show the user all of the events associated with the user and 
+allow them to create new events
 Admin Page
 This page will show all events. This page should be filterable by published and
 unpublished events. It should allow the admin to publish, edit, and delete
@@ -74,3 +78,7 @@ AJAX request.
 Display Event Object
 This will use information from event objects to create displays in the agenda
 view and the calendar view.
+
+
+Create New User
+Add users credentials to the .htpassword and add to the user table of the database
