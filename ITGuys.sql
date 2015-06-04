@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS users
 		fname VARCHAR(255),
 		lname VARCHAR(255),
 		email VARCHAR(255),
-		password VARCHAR(255),
 		user_name VARCHAR(255),
 		PRIMARY KEY (user_id)
 	);

@@ -66,6 +66,10 @@ Creates an object that represents a single event. Will probably be generated
 from a response table mysqli object. The information in the object should
 include data that will make events filterable.
 
+Further more, multiple JSON objects can be written to an array on the server.
+After the array of JSON objects is created it can be sent to the client via an
+AJAX request.
+
 
 Display Event Object
 This will use information from event objects to create displays in the agenda
