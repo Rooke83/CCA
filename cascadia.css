@@ -1,0 +1,43 @@
+body {
+	background-color: #d5e0ea;
+}
+
+#main_container {
+	width:800px; 
+	height:475px; 
+	margin: 0 auto; 
+}
+
+#map_area {
+	width:800px; 
+	height:400px; 
+	background-color:white; 
+	margin: 0 auto;
+}
+
+#agenda_container {
+	width:400px; 
+	height:475px; 
+	background-color:white; 
+	float:left;
+	overflow-y: scroll;
+}
+
+#filter_container {
+	width:400px; 
+	height:332.5px; 
+	background-color:white; 
+	float:left;
+	overflow-y: scroll;
+}
+
+#sign_up_container {
+	width:400px; 
+	height:142.5px; 
+	background-color:white; 
+	float:left;
+}
+
+.event_div {
+
+}
