@@ -1,0 +1,101 @@
+ITGuys
+- Haimonet Belay
+- Baldwin Browne
+- Joaquin Bautista
+
+Database Schema 
+99% complete, Always possible for changes to be made as more things are implemted
+1. The database maintains a list of events. 
+2. All required fields are accounted for.
+3. The database maintains a list of organizations.
+4. All require fields are accounted for
+9. Users access to the events has been considered in the design and is supported by
+the database schema
+10. Event approval is supported by the database
+11. Supported by database
+12. Users can be associatted with events and changes can be made to events
+13. The database supports admins being able to edit approved events
+15. Assocations of topic and type can be made in the database
+16. Events have starting and ending dates
+17. See above
+18. See above
+19. Geolocations are included with each event
+24. Only admin can add to event type/topic
+32. DB supports assocations between event and organizations
+44. Data entry status can be determined by the database
+49. DB can store partial events
+55. Both URL and Image are supported by the DB
+
+Server-Side/PHP Code
+10% complete, much design has been done and we are hacking away at implementation
+5.The three levels of users will be done via .htacces. Code for creating new users
+has yet to be completed. Design of user and admin pages is complete however.
+6. Web design is complete for anons querying the database but SQL and its 
+corresponding PHP still need to be written.
+7. Email verification has not yet been worked on.
+8. The admin pages have been designed but not yet coded.
+12. .htaccess (for getting current user) and retrieving their events has yet to be
+written
+15. SQL statements need to be written for using filters
+16. SQL statements need to be written for date filters
+17. See above
+18. See above
+19. Getting geolocation has been worked out building associations is still in the works
+20. lat lng for locations can be retrieved via city name or zip code
+21. Calculating distance is not yet in the design.
+22. See above
+23. Logic for retrieving events by type is being desinged
+25. SQL needs to be written for positive match of event types/topic
+28. Logic still needs to be written for event topic.
+32. See above
+33. SQL statements have yet to be written
+39. SQL selection has yet to be written
+48. Lat Lng can be determined but code for other requirements has not been written 
+
+Client Side
+40%
+6. The displaying of events has been designed and is being coded.
+11. Part of the design of user pages.
+13. Admin page has been designed
+14. Admin page has been designed
+15. Filters for type and topic have been designed and coded into the display page
+16. Date filters still need to be implemented
+17. See above
+18. See above 
+19. A Google Map has been incorporated into the display page.
+20. User specification of location is not yet in the design
+21. Event distance is not yet in the design
+22. See above
+23. The filters for event type have been coded
+24. HTML supports multiple types and topics from admin list
+26. See above
+27. Multiple selections are supported in the html
+29. Organizors filter still needs to be desinged into the display
+30. See above
+31. Not yet part of design
+32. See above
+34. An agenda view has been created for our display
+35. Individual event divs limit the amount of info shown.
+36. A Google Map has been created and map markers can be made based on objects from the DB
+37. Tool tips will display truncated event info
+38. Part of desing but has yet to be implemted
+39. Event page has been designed but not implemented
+40. Admin page has been designed but not coded
+42. See above
+45. User page has been designed
+47. User and admin pages have been designed
+48. Event creation page has been designed
+52. User and admin pages will allow for editing of events
+
+
+What is on the chopping block?
+Everything that doesn't not involve the displaying of the event via filters. 
+
+It is essential to have our calendar and map display be able to show events that are 
+queried from the database.
+
+The creation of event objects is essential. Each object contaions all relevent information for
+filtering and displaying an event. These objects have been designed and the PHP is being written
+for their dynamic creation.
+
+This is where our efforts will be focused during our hack-a-thons. The other things are expendable.
