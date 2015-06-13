@@ -11,7 +11,7 @@ function initialize() {
 	
 	getEventTypes();
 	getEventTopics();
-	//getEventAgenda();
+	getEventAgenda();
 	
 	var findNearEventsButton = document.getElementById('find_near_events');
 	var findEventsButton = document.getElementById('find_events');
@@ -33,7 +33,7 @@ function findEvents() {
 function getEventTypes() {
 	// AJAX request for event type checkboxes
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://www.danjinguji.com/ITGuys/get_type.php";
+	var url = "/ITGuys/get_type.php";
 	xmlhttp.onreadystatechange = function() {
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var eventTypObj = JSON.parse(xmlhttp.responseText);
@@ -59,7 +59,7 @@ function getEventTypes() {
 function getEventTopics() {
 	// AJAX request for event topic checkboxes
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://www.danjinguji.com/ITGuys/get_topic.php";
+	var url = "/ITGuys/get_topic.php";
 	xmlhttp.onreadystatechange = function() {
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var eventTopObj = JSON.parse(xmlhttp.responseText);
@@ -84,22 +84,44 @@ function getEventTopics() {
 
 function getEventAgenda() {
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://www.danjinguji.com/ITGuys/get_events.php";
+	var url = "/ITGuys/get_events.php";
 	xmlhttp.onreadystatechange = function() {
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var agendaObjs = JSON.parse(xmlhttp.responseText);
 			for(var i = 0; i < agendaObjs.length; i++) {
 				var agendaDivs = document.createElement('div');
-				//agendaDivs.id = agendaObjs[i]['id'];
-				//agendaDivs.className = agendaObjs[i]['title'];
-				agendaDivs.innerHTML = "reached";
-				agendaDivs.innerHTML = agendaObjs[i]['end_date_time'];
+				var eventDateBegTime = formatDateTime(agendaObjs[i]['beg_date_time']);
+				var eventDateEndTime = formatDateTime(agendaObjs[i]['end_date_time']);
+				var eventTypes = getSubJSON(agendaObjs[i]['types'], 'type'); 
+				agendaDivs.id = agendaObjs[i]['id'];
+				agendaDivs.className = agendaObjs[i]['title'];
+				agendaDivs.innerHTML =  eventDateBegTime[0] + "</br>" + 
+										eventDateBegTime[1] + " to " + eventDateEndTime[1] + ", " +
+										eventTypes + ", " + agendaObjs[i]['title'] + ", " + 
+										"(" + agendaObjs[i]['addr3'] + ")</br></br>" ;
+
 				document.getElementById('agenda_container').appendChild(agendaDivs);
 			}
 		}
 	}
 	xmlhttp.open("GET", url, true);
     xmlhttp.send();
+}
+
+// returns an array
+function formatDateTime(str) {
+	var res = str.split(" ");
+	return res;
+}
+
+// takes a array of JSON objects and returns an array of things at a given key 
+function getSubJSON(array, key) {
+	var returnArr = [];
+	for (var i = 0; i < array.length; i++){
+		returnArr.push(array[i][key]);
+	}
+	
+	return returnArr;
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
