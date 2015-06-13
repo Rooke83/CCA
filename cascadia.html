@@ -8,8 +8,30 @@
 		<script src="cascadia.js" type="text/javascript"></script>
 	</head>
 	<body>
+		<hgroup class="hgroup">
+			<h1 align="center">Cascadia Climate Action</h1>
+			<h2 align="center">Community Climate Action Today, Sustainable Life on Earth Tomorrow</h2>
+		</hgroup>
 		<div id="main_container">
 			<div id="map_area"></div>
+			<div id="location_filter_container" align="center">
+				From: <input type="date" id="event_date_from"/>
+				To: <input type="date" id="event_date_to"/>
+				Zip Code: <input type="text" id="zip_code"/>
+				<input type="button" id="find_near_events" value="Find Near Event(s)"/></br></br>
+				<div id="event_type_checkbox" align="left">
+					<b>Event Type:</b></br>
+					<!-- Dynamically create event type checkboxes here -->
+				</div>
+				<div id="event_topic_checkbox" align="left">
+				</br>
+					<b>Event Topic:</b></br>
+					<!-- Dynamically create event topic checkboxes here -->
+				</div>
+				<div align="left">
+					<input type="button" id="find_events" value="Find Event(s)"/>
+				</div></br>
+			</div>
 			<div id="agenda_container">
 				Agenda:
 				<div>
@@ -18,39 +40,19 @@
 					</p>
 				</div>
 				<div>
-					<p>Date</br>
-					   Time, Type of Event, Title of Event, Location, (City, State)
-					</p>
-				</div>
-				<div>
-					<p>Date</br>
-					   Time, Type of Event, Title of Event, Location, (City, State)
-					</p>
-				</div>
-				<div>
-					<p>Date</br>
-					   Time, Type of Event, Title of Event, Location, (City, State)
-					</p>
-				</div>
-				<div>
-					<p>Date</br>
-					   Time, Type of Event, Title of Event, Location, (City, State)
-					</p>
-				</div>
-				<div>
 					<p>All 10 events...</p>
 				</div>
+				<!-- Dynamically create the event agenda here -->
 			</div>
 			<div id="sign_up_container">
 				Please fill in the following information:
 				<form action="cascadia.php" method="post">
-					<input type="text" name="first_name" placeholder="First Name" required="required"></br>
-					<input type="text" name="last_name" placeholder="Last Name" required="required"></br>
-					<input type="email" name="your_email" placeholder="Email Address" required="required"></br>
-					<input type="text" name="organiz" placeholder="Organization(s)"></br>
+					<input type="text" id="first_name" placeholder="First Name" required="required"></br>
+					<input type="text" id="last_name" placeholder="Last Name" required="required"></br>
+					<input type="email" id="your_email" placeholder="Email Address" required="required"></br>
+					<input type="text" id="organiz" placeholder="Organization(s)"></br>
 					<input type="submit" value="Sign up" />
-					<!-- Testing Login button, it goes to the Yahoo website upon on click. -->
-					<input type="button" name="login" value="Login" onclick="window.location.href='http://wwww.yahoo.com'"/>
+					<input type="button" id="login" value="Login"/>
 				</form>
 			</div>
 			<div id="filter_container">
@@ -61,13 +63,9 @@
 					</p>
 				</div>
 				<div>
-					<p>Date</br>
-					   Time, Type of Event, Title of Event, Location, (City, State)
-					</p>
-				</div>
-				<div>
 					<p>The events will be filtered based on the checkboxes checked for each topic...</p>
 				</div>
+				<!-- Dynamically create the event agenda here -->
 			</div>
 		</div>
 	</body>
