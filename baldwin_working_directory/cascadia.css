@@ -1,0 +1,95 @@
+body {
+	background-color: #d5e0ea;
+}
+
+#main_container {
+	width:75%;
+	height: 1000px;
+	margin: 0 auto;
+	
+}
+
+#add_main_div {
+	width:500px; 
+	height:475px; 
+	margin: 0 auto; 
+}
+
+#map_area {
+	width:100%; 
+	height:50%; 
+	background-color:white; 
+	margin: 0 auto;
+}
+
+#location_filter_container {
+	
+	background-color:white;
+	margin: 0 auto; 
+	overflow-x: scroll;
+	width:100%;
+}
+
+
+
+#agenda_container {
+	width:50%; 
+	height:37.5%;
+	background-color:white; 
+	float:left;
+	overflow-y: scroll;
+}
+
+#filter_container {
+	width:100%; 
+	height:37.5%;
+	background-color:white; 
+	float:left; 
+	overflow-y: scroll;
+}
+
+#myevents_container {
+	width:500px; 
+	height:500px; 
+	background-color:white; 
+	margin: 0 auto; 
+	overflow-y: scroll;
+}
+
+#sign_up_container {
+	width:50%; 
+	height:37.5%;
+	background-color:white; 
+	float:right;
+}
+
+.hgroup {
+	width:100%; 
+	height:12.5%; 
+	background-color:white;
+	margin: 0 auto; 
+}
+
+.event_div {
+	position: relative;
+	background-color: white;
+	height:100px; 
+	overflow: hidden;
+	width:100%;
+	border-bottom-style:dotted;
+	border-bottom-width:thin;
+}
+
+.event_div_link {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 0;
+	margin: 0;
+}
+
+p.link {
+	margin: 0;
+	bottom:0
+	right:0;
+}
