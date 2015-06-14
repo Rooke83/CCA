@@ -75,5 +75,23 @@ body {
 }
 
 .event_div {
+	position: relative;
+	background-color: white;
+	height:100px; 
+	overflow: hidden;
+	border-style: solid;
+    border-width: 1px;
+	text-overflow: ellipsis;
+}
 
+.event_div_link {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 0;
+	margin: 0;
+}
+
+p.link {
+	margin: 0;
 }
