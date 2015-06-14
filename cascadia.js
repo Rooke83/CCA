@@ -41,7 +41,7 @@ function getEventTypes() {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
 				checkboxes.type = "checkbox";
-				checkboxes.id = eventTypObj[i]['type_id'];
+				checkboxes.id = "ty" + eventTypObj[i]['type_id'];
 				checkboxes.value = eventTypObj[i]['type_name'];
 				checkboxes.checked = false;
 				// Create the labels next to the checkboxes
@@ -67,7 +67,7 @@ function getEventTopics() {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
 				checkboxes.type = "checkbox";
-				checkboxes.id = eventTopObj[i]['topic_id'];
+				checkboxes.id = "to" + eventTopObj[i]['topic_id'];
 				checkboxes.value = eventTopObj[i]['topic_name'];
 				checkboxes.checked = false;
 				// Create the labels next to the checkboxes
@@ -89,23 +89,33 @@ function getEventAgenda() {
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var agendaObjs = JSON.parse(xmlhttp.responseText);
 			for(var i = 0; i < agendaObjs.length; i++) {
-				var agendaDivs = document.createElement('div');
-				var eventDateBegTime = formatDateTime(agendaObjs[i]['beg_date_time']);
-				var eventDateEndTime = formatDateTime(agendaObjs[i]['end_date_time']);
-				var eventTypes = getSubJSON(agendaObjs[i]['types'], 'type'); 
-				agendaDivs.id = agendaObjs[i]['id'];
-				agendaDivs.className = agendaObjs[i]['title'];
-				agendaDivs.innerHTML =  eventDateBegTime[0] + "</br>" + 
-										eventDateBegTime[1] + " to " + eventDateEndTime[1] + ", " +
-										eventTypes + ", " + agendaObjs[i]['title'] + ", " + 
-										"(" + agendaObjs[i]['addr3'] + ")</br></br>" ;
-
-				document.getElementById('agenda_container').appendChild(agendaDivs);
+				var createEvent = createEventDiv(agendaObjs[i]);
+				document.getElementById('agenda_container').appendChild(createEvent);
+				var moreLinkDivs = document.createElement('div');
+				moreLinkDivs.className = 'event_div_link';
+				moreLinkDivs.innerHTML = "<p class='link'>More...</p>";
+				var id = agendaObjs[i]['id'];
+				$("#" + id).append(moreLinkDivs);
 			}
 		}
 	}
 	xmlhttp.open("GET", url, true);
     xmlhttp.send();
+}
+
+function createEventDiv(eventObj) {
+	var agendaDivs = document.createElement('div');
+	var eventDateBegTime = formatDateTime(eventObj['beg_date_time']);
+	var eventDateEndTime = formatDateTime(eventObj['end_date_time']);
+	var eventCityState = formatDateTime(eventObj['addr3']);
+	var eventType = getSubJSON(eventObj['types'], 'type'); 
+	agendaDivs.id = eventObj['id'];
+	agendaDivs.className = 'event_div'; 
+	agendaDivs.innerHTML = "<p><b>" + eventDateBegTime[0] + "</b>" + "</br>" + 
+						   "<i>" + eventObj['title'] + "</i>" + ", " + eventDateBegTime[1] + " to " + 
+						   eventDateEndTime[1] + ", " + eventType + ", " + "(" + 
+						   eventCityState[0] + " " + eventCityState[1] + ") " + eventObj['descrip'] + "</p>";
+	return agendaDivs;
 }
 
 // returns an array
