@@ -46,5 +46,40 @@ prcSQL($mysqli, $query);
 
 $query = "INSERT INTO type_lookup VALUES (4, 7);";
 prcSQL($mysqli, $query);
+
+$query = "INSERT INTO type_lookup VALUES (5, 1);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO org_lookup  VALUES (5, 3);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO topic_lookup VALUES (5, 2);";
+prcSQL($mysqli, $query);
+
+$query = "INSERT INTO type_lookup VALUES (6, 5);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO org_lookup  VALUES (6, 2);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO topic_lookup VALUES (6, 2);";
+prcSQL($mysqli, $query);
+
+$query = "INSERT INTO type_lookup VALUES (7, 7);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO org_lookup  VALUES (7, 2);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO topic_lookup VALUES (7, 6);";
+prcSQL($mysqli, $query);
+
+$query = "INSERT INTO type_lookup VALUES (8, 5);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO org_lookup  VALUES (8, 7);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO topic_lookup VALUES (8, 5);";
+prcSQL($mysqli, $query);
+
+$query = "INSERT INTO type_lookup VALUES (9, 2);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO org_lookup  VALUES (9, 5);";
+prcSQL($mysqli, $query);
+$query = "INSERT INTO topic_lookup VALUES (9, 3);";
+prcSQL($mysqli, $query);
 //$mysqli->close();
 ?>
