@@ -14,20 +14,58 @@ function initialize() {
 	getEventAgenda();
 	
 	var findNearEventsButton = document.getElementById('find_near_events');
-	var findEventsButton = document.getElementById('find_events');
+	var findFilteredEventsButton = document.getElementById('find_events');
 	findNearEventsButton.addEventListener('click', findNearEvents);
-	findEventsButton.addEventListener('click', findEvents);
+	findFilteredEventsButton.addEventListener('click', findFilteredEvents);
 }
 
 function findNearEvents() {
 	var xmlhttp = new XMLHttpRequest();
-	
+	var url = "/ITGuys/";
+	xmlhttp.onreadystatechange = function() {
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			
+		}
+	}
+	xmlhttp.open("GET", url, true);
+    xmlhttp.send();	
 }
 
-// Event div to use the records of the fake json object.
-function findEvents() {
+function findFilteredEvents() {
 	var xmlhttp = new XMLHttpRequest();
 	
+	// Start of new code
+	typeArr = [];
+	$('input:checkbox[name=type_boxes]').each(function() 
+	{    
+	   if($(this).is(':checked')) {
+	   	typeArr.push("'" + $(this).val() + "'");
+	   }
+		
+	});
+	
+	topicArr = [];
+	$('input:checkbox[name=topic_boxes]').each(function() 
+	{    
+	   if($(this).is(':checked'))
+			topicArr.push("'" + $(this).val() + "'");
+	});
+	
+	var str = "get_filtered_events.php?type=" + typeArr.join() + "&topic=" + topicArr.join();
+	var url = str.replace(" ", "+");
+	// End of new code
+	
+	xmlhttp.onreadystatechange = function() {
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var agendaObjs = JSON.parse(xmlhttp.responseText);
+			for(var i = 0; i < agendaObjs.length; i++) {
+				var createEvent = createEventDiv(agendaObjs[i]);
+				document.getElementById('filter_container').appendChild(createEvent);
+			}
+		}
+	}
+	xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 }
 
 function getEventTypes() {
@@ -40,6 +78,7 @@ function getEventTypes() {
 			for(var i = 0; i < eventTypObj.length; i++) {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
+				checkboxes.name = "type_boxes";
 				checkboxes.type = "checkbox";
 				checkboxes.id = "ty" + eventTypObj[i]['type_id'];
 				checkboxes.value = eventTypObj[i]['type_name'];
@@ -66,6 +105,7 @@ function getEventTopics() {
 			for(var i = 0; i < eventTopObj.length; i++) {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
+				checkboxes.name = "topic_boxes";
 				checkboxes.type = "checkbox";
 				checkboxes.id = "to" + eventTopObj[i]['topic_id'];
 				checkboxes.value = eventTopObj[i]['topic_name'];
