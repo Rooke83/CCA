@@ -20,18 +20,9 @@ prcSQL($mysqli, $query);
 
 $query = "INSERT INTO organization (org_name, email) VALUES ('North Seattle College Environmental Group', 'fake@example.com')";
 prcSQL($mysqli, $query);
-<<<<<<< HEAD
 
 $query = "INSERT INTO organization (org_name, email) VALUES ('GoGreen', 'fake@example.com')";
 prcSQL($mysqli, $query);
 
 //$mysqli->close();
 ?>
-=======
-
-$query = "INSERT INTO organization (org_name, email) VALUES ('GoGreen', 'fake@example.com')";
-prcSQL($mysqli, $query);
-//$mysqli->close();
-
-?>
->>>>>>> 3b36e96401c98b592e5b8d3ace9da911d61008b9
