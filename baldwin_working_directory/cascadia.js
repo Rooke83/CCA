@@ -21,14 +21,36 @@ function initialize() {
 }
 
 function findNearEvents() {
-	var xmlhttp = new XMLHttpRequest();
+	
 	
 }
 
 // Event div to use the records of the fake json object.
 function findEvents() {
-	var xmlhttp = new XMLHttpRequest();
+
+	typeArr = [];
+	$('input:checkbox[name=type_boxes]').each(function() 
+	{    
+	    if($(this).is(':checked')) {
+	    	typeArr.push("'"+$(this).val()+"'");
+	    }
+		
+	});
 	
+	topicArr = [];
+	$('input:checkbox[name=topic_boxes]').each(function() 
+	{    
+	    if($(this).is(':checked'))
+			topicArr.push("'"+$(this).val()+"'");
+	});
+	
+	//console.log(typeArr.join());
+	//console.log(topicArr.join());
+	
+	var str = "get_filtered_events.php?type=" + typeArr.join() + "&topic=" + topicArr.join();
+	
+	var URL = str.replace(" ", "+");
+	console.log(URL);
 }
 
 function getEventTypes() {
@@ -41,6 +63,7 @@ function getEventTypes() {
 			for(var i = 0; i < eventTypObj.length; i++) {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
+				checkboxes.name = "type_boxes";
 				checkboxes.type = "checkbox";
 				checkboxes.id = "ty" + eventTypObj[i]['type_id'];
 				checkboxes.value = eventTypObj[i]['type_name'];
@@ -67,6 +90,7 @@ function getEventTopics() {
 			for(var i = 0; i < eventTopObj.length; i++) {
 				// Create the checkboxes
 				var checkboxes = document.createElement('input');
+				checkboxes.name = "topic_boxes";
 				checkboxes.type = "checkbox";
 				checkboxes.id = "to" + eventTopObj[i]['topic_id'];
 				checkboxes.value = eventTopObj[i]['topic_name'];
@@ -122,7 +146,8 @@ function createEventDiv(eventObj) {
 	agendaDivs.innerHTML = "<p><b>" + eventDateBegTime[0] + "</b>" + "</br>" + 
 						   "<i>" + eventObj['title'] + "</i>" + ", " + eventDateBegTime[1] + " to " + 
 						   eventDateEndTime[1] + ", " + eventType + ", " + "(" + 
-						   eventCityState[0] + " " + eventCityState[1] + ") " + eventObj['descrip'] + "</p>";
+						   eventCityState[0] + " " + eventCityState[1] + ") " + eventObj['descrip'] + 
+	"<a href='event_info.php?id="+eventObj['id']+"' class='readmore'>Read More</a></p>";
 	return agendaDivs;
 }
 

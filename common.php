@@ -8,7 +8,7 @@ function getDBConnect($username, $password, $DBName) {
 		die('Connect error ('.$mysqli->connect_errno.') '.$mysqli->connect_error);
 	}
 	
-	echo "Connection successful... " . $mysqli->host_info . "<br><br>";
+//	echo "Connection successful... " . $mysqli->host_info . "<br><br>";
 	
 	return $mysqli;
 	

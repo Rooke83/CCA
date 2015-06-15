@@ -17,6 +17,8 @@ DROP TABLE IF EXISTS type_lookup;
 
 DROP TABLE IF EXISTS topic_lookup;
 
+DROP TABLE IF EXISTS org_lookup;
+
 CREATE TABLE IF NOT EXISTS organization
 	(
 		org_id INT NOT NULL AUTO_INCREMENT,
@@ -57,7 +59,6 @@ CREATE TABLE IF NOT EXISTS event_main
 		beg_date_time DATETIME,
 		end_date_time DATETIME,
 		event_cost FLOAT,
-		organization INT,
 		submitted_by INT,
 		event_URL VARCHAR(2083),
 		admin_notes TEXT,
@@ -70,20 +71,26 @@ CREATE TABLE IF NOT EXISTS event_main
 		event_loc_desc TEXT,
 		version INT, -- to log previous versions
 		PRIMARY KEY (event_id),
-		FOREIGN KEY (submitted_by) REFERENCES users(user_id),
-		FOREIGN KEY (organization) REFERENCES organization(org_id)
+		FOREIGN KEY (submitted_by) REFERENCES users(user_id)
 	);
 
 CREATE TABLE IF NOT EXISTS type_lookup
 	(
-		event_id INT NOT NULL default '0',
-		type_id INT NOT NULL default '0',
+		event_id INT NOT NULL,
+		type_id INT NOT NULL,
 		PRIMARY KEY (event_id, type_id)
 	);
 
 CREATE TABLE IF NOT EXISTS topic_lookup
 	(
-		event_id INT NOT NULL default '0',
-		topic_id INT NOT NULL default '0',
+		event_id INT NOT NULL,
+		topic_id INT NOT NULL,
 		PRIMARY KEY (event_id, topic_id)
+	);
+	
+CREATE TABLE IF NOT EXISTS org_lookup
+	(
+		event_id INT NOT NULL,
+		org_id INT NOT NULL,
+		PRIMARY KEY (event_id, org_id)
 	);
