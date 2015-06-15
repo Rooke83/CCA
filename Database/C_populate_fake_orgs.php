@@ -23,7 +23,8 @@ prcSQL($mysqli, $query);
 $query = "INSERT INTO organization (org_name, email) VALUES ('North Seattle College Environmental Group', 'fake@example.com')";
 prcSQL($mysqli, $query);
 
-
+$query = "INSERT INTO organization (org_name, email) VALUES ('GoGreen', 'fake@example.com')";
+prcSQL($mysqli, $query);
 //$mysqli->close();
 
 ?>
