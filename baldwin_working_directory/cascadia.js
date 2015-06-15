@@ -28,29 +28,40 @@ function findNearEvents() {
 // Event div to use the records of the fake json object.
 function findEvents() {
 
-	typeArr = [];
-	$('input:checkbox[name=type_boxes]').each(function() 
-	{    
-	    if($(this).is(':checked')) {
-	    	typeArr.push("'"+$(this).val()+"'");
-	    }
+	var xmlhttp = new XMLHttpRequest();
+	
+		// Start of new code
+		typeArr = [];
+		$('input:checkbox[name=type_boxes]').each(function() 
+		{    
+		   if($(this).is(':checked')) {
+		   	typeArr.push("'" + $(this).val() + "'");
+		   }
 		
-	});
+		});
 	
-	topicArr = [];
-	$('input:checkbox[name=topic_boxes]').each(function() 
-	{    
-	    if($(this).is(':checked'))
-			topicArr.push("'"+$(this).val()+"'");
-	});
+		topicArr = [];
+		$('input:checkbox[name=topic_boxes]').each(function() 
+		{    
+		   if($(this).is(':checked'))
+				topicArr.push("'" + $(this).val() + "'");
+		});
 	
-	//console.log(typeArr.join());
-	//console.log(topicArr.join());
+		var str = "get_filtered_events.php?type=" + typeArr.join() + "&topic=" + topicArr.join();
+		var url = str.replace(" ", "+");
+		// End of new code
 	
-	var str = "get_filtered_events.php?type=" + typeArr.join() + "&topic=" + topicArr.join();
-	
-	var URL = str.replace(" ", "+");
-	console.log(URL);
+		xmlhttp.onreadystatechange = function() {
+			if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var agendaObjs = JSON.parse(xmlhttp.responseText);
+				for(var i = 0; i < agendaObjs.length; i++) {
+					var createEvent = createEventDiv(agendaObjs[i]);
+					document.getElementById('filter_container').appendChild(createEvent);
+				}
+			}
+		}
+		xmlhttp.open("GET", url, true);
+	    xmlhttp.send();
 }
 
 function getEventTypes() {
@@ -140,9 +151,17 @@ function createEventDiv(eventObj) {
 	var eventDateBegTime = formatDateTime(eventObj['beg_date_time']);
 	var eventDateEndTime = formatDateTime(eventObj['end_date_time']);
 	var eventCityState = formatDateTime(eventObj['addr3']);
-	var eventType = getSubJSON(eventObj['types'], 'type'); 
+	var eventType = getSubJSON(eventObj['types'], 'type');
+	var eventTopic = getSubJSON(eventObj['topics'], 'topic'); 
 	agendaDivs.id = eventObj['id'];
-	agendaDivs.className = 'event_div'; 
+	agendaDivs.className = 'event_div';
+	for(var i = 0; i < eventType.length; i++) {
+		$(agendaDivs).addClass(eventType[i].replace(" ", "_"));
+	}
+	
+	for(var i = 0; i < eventTopic.length; i++) {
+		$(agendaDivs).addClass(eventTopic[i].replace(" ", "_"));
+	}
 	agendaDivs.innerHTML = "<p><b>" + eventDateBegTime[0] + "</b>" + "</br>" + 
 						   "<i>" + eventObj['title'] + "</i>" + ", " + eventDateBegTime[1] + " to " + 
 						   eventDateEndTime[1] + ", " + eventType + ", " + "(" + 
