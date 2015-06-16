@@ -65,7 +65,7 @@ $query = "INSERT INTO type_lookup VALUES (7, 7);";
 prcSQL($mysqli, $query);
 $query = "INSERT INTO org_lookup  VALUES (7, 2);";
 prcSQL($mysqli, $query);
-$query = "INSERT INTO topic_lookup VALUES (7, 6);";
+$query = "INSERT INTO topic_lookup VALUES (7, 5);";
 prcSQL($mysqli, $query);
 
 $query = "INSERT INTO type_lookup VALUES (8, 5);";

@@ -73,7 +73,7 @@ body {
 .event_div {
 	position: relative;
 	background-color: white;
-	height:6em; 
+	height:120px; 
 	overflow: hidden;
 	width:100%;
 	border-bottom-style:dotted;

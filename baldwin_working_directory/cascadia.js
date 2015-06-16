@@ -1,3 +1,6 @@
+var mapMarkers = [];
+var map;
+
 function initialize() {
 	
 	// Initial setup of the map
@@ -16,8 +19,15 @@ function initialize() {
 	
 	var findNearEventsButton = document.getElementById('find_near_events');
 	var findEventsButton = document.getElementById('find_events');
+	var showEventsButton = document.getElementById('show_events');
 	findNearEventsButton.addEventListener('click', findNearEvents);
 	findEventsButton.addEventListener('click', findEvents);
+	showEventsButton.addEventListener('click', showEvents);
+}
+
+function showEvents() {
+	$('.event_div').show();
+	
 }
 
 function findNearEvents() {
@@ -27,26 +37,42 @@ function findNearEvents() {
 
 // Event div to use the records of the fake json object.
 function findEvents() {
-
-	var xmlhttp = new XMLHttpRequest();
+	
+	$('.event_div').hide();
+	//var xmlhttp = new XMLHttpRequest();
 	
 		// Start of new code
-		typeArr = [];
-		$('input:checkbox[name=type_boxes]').each(function() 
-		{    
-		   if($(this).is(':checked')) {
-		   	typeArr.push("'" + $(this).val() + "'");
-		   }
+	Arr = [];
+	$('input:checkbox[name=type_boxes]').each(function() 
+	{    
+		if($(this).is(':checked')) {
+			Arr.push($(this).val().replace(" ", "+"));
+		}
 		
-		});
+	});
 	
-		topicArr = [];
+	//topicArr = [];
 		$('input:checkbox[name=topic_boxes]').each(function() 
 		{    
 		   if($(this).is(':checked'))
-				topicArr.push("'" + $(this).val() + "'");
+				Arr.push($(this).val().replace(" ", "_"));
 		});
-	
+		
+		var selector = "."+Arr.join(".")+"";
+		console.log(selector);
+		$(selector).show();
+		for (var i = 0; i<mapMarkers.length; i++){
+			mapMarkers[i].setMap(null);
+		}
+		/*
+		$("'."+Arr.join(".")+"'").each(function() {
+			
+			$(this).show();
+			
+		});
+		*/
+
+	/*
 		var str = "get_filtered_events.php?type=" + typeArr.join() + "&topic=" + topicArr.join();
 		var url = str.replace(" ", "+");
 		// End of new code
@@ -62,6 +88,7 @@ function findEvents() {
 		}
 		xmlhttp.open("GET", url, true);
 	    xmlhttp.send();
+		*/
 }
 
 function getEventTypes() {
@@ -140,6 +167,9 @@ function getEventAgenda() {
 					after: "a.readmore"
 			    });
 			});
+			for(var i = 0; i < mapMarkers.length; i++) {
+				mapMarkers[i].setMap(map);
+			}
 		}
 	}
 	xmlhttp.open("GET", url, true);
@@ -167,6 +197,14 @@ function createEventDiv(eventObj) {
 						   eventDateEndTime[1] + ", " + eventType + ", " + "(" + 
 						   eventCityState[0] + " " + eventCityState[1] + ") " + eventObj['descrip'] + 
 	"<a href='event_info.php?id="+eventObj['id']+"' class='readmore'>Read More</a></p>";
+	
+	var eventLatLng = new google.maps.LatLng(eventObj['lat'], eventObj['lng']);
+	var eventMarker = new google.maps.Marker({
+		position: eventLatLng,
+		animation: google.maps.Animation.DROP,
+		title: eventObj['title']
+	});
+	mapMarkers.push(eventMarker);
 	return agendaDivs;
 }
 
