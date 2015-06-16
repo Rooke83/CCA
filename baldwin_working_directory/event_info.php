@@ -85,6 +85,28 @@ $result->close();
 }
 
 $mysqli->close();
-echo json_encode($returnArr);
-
+//echo json_encode($returnArr);
+$event = $returnArr[0];
 ?>
+<html>
+<head>
+	<title>Event Details</title>
+	<meta charset ="utf-8">
+</head>
+<body>
+	<b>Title:</b> <?=$event['title'];?><br>
+	<b>Starting date-time:</b> <?=$event['beg_date_time']?><br>
+	<b>Ending date-time:</b> <?=$event['end_date_time']?><br>
+	<b>Location:</b> <?=$event['addr1']." ". $event['addr3']?><br>
+	<b>Topics: </b> <?php foreach($event['topics'] as $item) {
+		echo $item['topic'] ." ";
+	}?><br>
+	<b>Kind of event: </b> <?php foreach($event['types'] as $item) {
+		echo $item['type'] ." ";
+	}?><br>
+	<b>Organization(s) involved: : </b> <?php foreach($event['orgs'] as $item) {
+		echo $item['org'] ." ";
+	}?><br>
+	<b>Description:</b> <?=$event['descrip']?><br>
+</body>
+</html>

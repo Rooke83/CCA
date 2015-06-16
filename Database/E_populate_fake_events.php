@@ -7,7 +7,7 @@ echo "<br><i>Inserting phony events into the database.</i><br>";
 $query = "INSERT INTO event_main (event_name, description, beg_date_time, end_date_time, event_cost, submitted_by, event_URL, admin_notes, event_loc_lat, event_loc_lng, event_address_line1, event_address_line2, event_address_line3) VALUES ('Walk for Peace', 'We will be walking in the sculpture park and talking to people about the rising sea levels.', '2015-06-19 18:00:00', '2015-06-19 20:00:00', 0.00, 4, 'http://www.example.com', 'Trudy Beakman will provide literature for people to distribute.', 47.616896, -122.356446, '2901 Western Avenue', '', 'Seattle, WA 98121');";
 prcSQL($mysqli, $query);
 
-$query = "INSERT INTO event_main (event_name, description, beg_date_time, end_date_time, event_cost, submitted_by, event_URL, admin_notes, event_loc_lat, event_loc_lng, event_loc_desc, event_address_line1, event_address_line2, event_address_line3) VALUES ('Sacred Witness Event to Support Lummi Nation', 'As part of the UUA General Assembly 2015, come honor our connections to each other and to all of creation.
+$desc = "As part of the UUA General Assembly 2015, come honor our connections to each other and to all of creation.
 
 In the face of the overwhelming reality and impacts of climate change and environmental destruction, we need each other. Together, we can celebrate life. Together, we
 can deepen our commitments to justice. Together, we can change the world.
@@ -21,7 +21,10 @@ Lands and Waters.
 Hear from American Indian and First Nations leaders at the frontlines, including Lummi Nation Councilman and treaty rights activist Jay Julius and Lummi Elder,
 international climate justice activist, and totem pole carver Jewell Praying Wolf James.
 
-Together we will move through the deep emotional core touched by climate change: grief, anger, despair, and finally, hope. From that hope we will take action.', '2015-06-27 16:15:00', '2015-06-27 18:15:00', 0.00, 4, 'http://earthministry.org/event/sacred-witness-event-to-support-the-lummi-nation/', '', 45.528457, -122.663170, 'Oregon Convention Center', '777 NE Martin Luther King Jr Blvd', '', 'Portland, OR 97232');";
+Together we will move through the deep emotional core touched by climate change: grief, anger, despair, and finally, hope. From that hope we will take action.";
+
+$descr = addslashes($desc);
+$query = "INSERT INTO event_main (event_name, description, beg_date_time, end_date_time, event_cost, submitted_by, event_URL, admin_notes, event_loc_lat, event_loc_lng, event_loc_desc, event_address_line1, event_address_line2, event_address_line3) VALUES ('Sacred Witness Event to Support Lummi Nation', '$descr', '2015-06-27 16:15:00', '2015-06-27 18:15:00', 0.00, 4, 'http://earthministry.org/event/sacred-witness-event-to-support-the-lummi-nation/', '', 45.528457, -122.663170, 'Oregon Convention Center', '777 NE Martin Luther King Jr Blvd', '', 'Portland, OR 97232');";
 prcSQL($mysqli, $query);
 
 $descr= "Wash State Reps. Muri and Fey, both members of the Washington House of Representatives Electric Vehicle (EV) Caucus, believe the use of electric vehicles can strengthen Washington’s economy.  One key challenge is how to get more EV charging infrastructure into single- and multi-family residential development  – both new construction and redevelopment.   Is there a win-win solution for South Sound?
