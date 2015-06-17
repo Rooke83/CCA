@@ -31,7 +31,7 @@ function showEvents() {
 }
 
 function findNearEvents() {
-	
+	console.log($('#zip_code').val());
 	
 }
 

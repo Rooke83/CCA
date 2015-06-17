@@ -17,9 +17,12 @@
 					</div>
 				<textarea name="event_textarea" rows="4" cols="60"></textarea>
 			</div>
-			Start Time: <input type="time" name="start_time"/></br>
-			End Time: <input type="time" name="end_time"/></br>
-			Address: <input type="text" name="address"/></br>
+			Start Time: <input type="time" name="start_time" placeholder="YYYY-MM-DD HH:MM:SS"/></br>
+			End Time: <input type="time" name="end_time" placeholder="YYYY-MM-DD HH:MM:SS"/></br>
+			Location Name: <input type="text" name="address_loc"/></br>
+			Address 1: <input type="text" name="address1"/></br>
+			Address 2: <input type="text" name="address2"/></br>
+			Address 3: <input type="text" name="address3"/></br>
 			Cost: <input type="text" name="cost"/></br>
 			<div id="add_event_type_check_boxes">Event Types:</br></div>
 			<div id="add_event_topic_check_boxes">Event Topics:</br></div>
